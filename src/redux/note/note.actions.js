@@ -48,3 +48,22 @@ export const deleteNoteFailure = (error) => ({
 	type: NoteActionTypes.DELETE_NOTE_FAILURE,
 	error,
 });
+
+export const updateNoteStart = (data) => ({
+	type: NoteActionTypes.UPDATE_NOTE_START,
+	payload: data,
+});
+
+export const updateNoteSuccess = (note) => ({
+	type: NoteActionTypes.UPDATE_NOTE_SUCCESS,
+	payload: note,
+});
+
+export const updateNoteFailure = (error) => ({
+	type: NoteActionTypes.DELETE_NOTE_FAILURE,
+	error,
+});
+
+export const toggleEditBoxHidden = () => ({
+	type: NoteActionTypes.TOGGLE_EDIT_BOX_HIDDEN,
+});

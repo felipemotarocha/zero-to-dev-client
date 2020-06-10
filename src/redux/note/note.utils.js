@@ -4,5 +4,13 @@ export const addNote = (notes, noteToAdd) => {
 };
 
 export const deleteNote = (notes, noteToDelete) => {
-	return notes.filter((note) => note._id !== noteToDelete);
+	return notes.filter((note) => note._id !== noteToDelete._id);
+};
+
+export const updateNote = (notes, updatedNote) => {
+	return notes.map((note) =>
+		note._id === updatedNote._id
+			? { ...note, text: updatedNote.text }
+			: { ...note }
+	);
 };

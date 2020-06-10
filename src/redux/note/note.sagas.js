@@ -9,6 +9,8 @@ import {
 	addVideoNoteFailure,
 	deleteNoteSuccess,
 	deleteNoteFailure,
+	updateNoteSuccess,
+	updateNoteFailure,
 } from "./note.actions";
 
 // Asynchronous operations
@@ -51,12 +53,23 @@ export function* addVideoNote({ payload: { text, videoTime, videoId } }) {
 	}
 }
 
-export function* deleteNote({ payload: noteId }) {
+export function* deleteNote({ payload: { noteId } }) {
 	try {
 		const { data } = yield axios.delete(`/notes/${noteId}`);
 		yield put(deleteNoteSuccess(data));
 	} catch ({ response: { data } }) {
 		yield put(deleteNoteFailure(data));
+	}
+}
+
+export function* updateNote({ payload: { text, noteId } }) {
+	try {
+		const { data } = yield axios.patch(`/notes/${noteId}`, {
+			text,
+		});
+		yield put(updateNoteSuccess(data));
+	} catch ({ response: { data } }) {
+		yield put(updateNoteFailure(data));
 	}
 }
 
@@ -76,10 +89,15 @@ export function* onRemoveNoteStart() {
 	yield takeLatest(NoteActionTypes.DELETE_NOTE_START, deleteNote);
 }
 
+export function* onUpdateNoteStart() {
+	yield takeLatest(NoteActionTypes.UPDATE_NOTE_START, updateNote);
+}
+
 export function* noteSagas() {
 	yield all([
 		call(onFetchUserVideoNotesStart),
 		call(onAddVideoNoteStart),
 		call(onRemoveNoteStart),
+		call(onUpdateNoteStart),
 	]);
 }

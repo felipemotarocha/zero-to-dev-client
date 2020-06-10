@@ -11,3 +11,8 @@ export const selectNotesEditable = createSelector(
 	[selectNote],
 	(note) => note.editable
 );
+
+export const selectEditBoxHidden = createSelector(
+	[selectNote],
+	(note) => note.editBoxHidden
+);

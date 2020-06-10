@@ -1,11 +1,12 @@
 import NoteActionTypes from "./note.types";
 import UserActionTypes from "../user/user.types";
-import { addNote, deleteNote } from "./note.utils";
+import { addNote, deleteNote, updateNote } from "./note.utils";
 
 const INITIAL_STATE = {
 	userVideoNotes: null,
 	isLoading: true,
-	editable: true,
+	editable: false,
+	editBoxHidden: true,
 };
 
 const noteReducer = (state = INITIAL_STATE, action) => {
@@ -13,6 +14,7 @@ const noteReducer = (state = INITIAL_STATE, action) => {
 		case NoteActionTypes.FETCH_USER_VIDEO_NOTES_START:
 		case NoteActionTypes.ADD_VIDEO_NOTE_START:
 		case NoteActionTypes.DELETE_NOTE_START:
+		case NoteActionTypes.UPDATE_NOTE_START:
 			return {
 				...state,
 				isLoading: true,
@@ -36,13 +38,24 @@ const noteReducer = (state = INITIAL_STATE, action) => {
 		case NoteActionTypes.DELETE_NOTE_SUCCESS:
 			return {
 				...state,
-				userVideosNotes: deleteNote(state.userVideoNotes, action.payload),
+				userVideoNotes: deleteNote(state.userVideoNotes, action.payload),
+				isLoading: false,
+			};
+		case NoteActionTypes.UPDATE_NOTE_SUCCESS:
+			return {
+				...state,
+				userVideoNotes: updateNote(state.userVideoNotes, action.payload),
 				isLoading: false,
 			};
 		case NoteActionTypes.TOGGLE_NOTES_EDITABLE:
 			return {
 				...state,
 				editable: !state.editable,
+			};
+		case NoteActionTypes.TOGGLE_EDIT_BOX_HIDDEN:
+			return {
+				...state,
+				editBoxHidden: !state.editBoxHidden,
 			};
 		case NoteActionTypes.FETCH_USER_VIDEO_NOTES_FAILURE:
 		case NoteActionTypes.DELETE_NOTE_FAILURE:

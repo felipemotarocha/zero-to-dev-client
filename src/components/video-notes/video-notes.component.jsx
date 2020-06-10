@@ -41,7 +41,9 @@ const VideoNotes = ({ userVideoNotes, currentUser, notesEditable }) => {
 			{currentUser ? (
 				<Notes>
 					{userVideoNotes
-						? userVideoNotes.map((note) => <VideoNote note={note} />)
+						? userVideoNotes.map((note) => (
+								<VideoNote key={note._id} note={note} />
+						  ))
 						: ""}
 				</Notes>
 			) : (

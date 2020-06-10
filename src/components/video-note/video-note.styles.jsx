@@ -28,19 +28,19 @@ export const Time = styled.div`
 	}
 `;
 
-export const Text = styled.div`
+export const Text = styled.span`
+	display: inline;
 	max-width: 100%;
 `;
 
 export const Buttons = styled.div`
 	display: flex;
-	margin-left: 3px;
 	height: 100%;
 	align-items: center;
 `;
 
 export const Delete = styled(DeleteIcon)`
-	margin-right: 5px;
+	margin: 0 5px;
 	color: #dc143c;
 	border-radius: 50%;
 
@@ -55,4 +55,26 @@ export const Edit = styled(CreateIcon)`
 	&:hover {
 		cursor: pointer;
 	}
+`;
+
+export const Alert = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
+	padding: 30px;
+	text-align: center;
+	background-color: white;
+	border-radius: 10px;
+`;
+
+export const AlertHeadline = styled.span`
+	font-size: 1.8rem;
+	font-weight: bold;
+`;
+
+export const AlertText = styled.span`
+	font-size: 1rem;
+	margin: 12px 0;
 `;
