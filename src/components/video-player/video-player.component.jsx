@@ -28,8 +28,6 @@ const VideoPlayer = ({ currentUser }) => {
 	}, [dispatch, id, currentUser]);
 
 	const playerOptions = {
-		height: "500",
-		width: "800",
 		playerVars: {
 			autoplay: 0,
 		},

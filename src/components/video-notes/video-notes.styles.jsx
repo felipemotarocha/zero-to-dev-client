@@ -7,7 +7,15 @@ export const Container = styled.div`
 	grid-template-rows: 50px 1fr;
 	border-radius: 10px;
 	box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.23);
-	max-width: 400px;
+	max-width: 100%;
+
+	@media (max-width: 767px) {
+		margin: auto;
+	}
+
+	@media (min-width: 768px) and (max-width: 1024px) {
+		margin: auto;
+	}
 `;
 
 export const Headline = styled.div`
@@ -42,12 +50,12 @@ export const Edit = styled.div`
 export const Notes = styled.div`
 	text-align: left;
 	padding: 10px 20px;
-	max-width: 400px;
 	overflow-y: scroll;
+	max-width: 100%;
 `;
 
 export const SignMessage = styled.div`
-	max-width: 400px;
+	max-width: 100%;
 	padding: 0 20px;
 	height: 100%;
 	display: flex;
@@ -55,6 +63,7 @@ export const SignMessage = styled.div`
 	justify-content: center;
 	align-items: center;
 	font-size: 1.4rem;
+	margin: auto;
 `;
 
 export const Message = styled.span``;

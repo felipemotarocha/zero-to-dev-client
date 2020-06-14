@@ -151,11 +151,11 @@ const Navbar = ({ currentUser }) => {
 					<>
 						<UserData>
 							<IconButton
-								style={{ color: "#FFFFFF", margin: "0" }}
+								style={{ color: "#FFFFFF" }}
 								aria-label="person"
 								onClick={handleClick}
 							>
-								<PersonIcon fontSize="large" />
+								<PersonIcon />
 								<KeyboardArrowDownIcon />
 							</IconButton>
 

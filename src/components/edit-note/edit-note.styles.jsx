@@ -45,6 +45,10 @@ export const Box = styled.div`
 			opacity: 1;
 		}
 	}
+
+	@media (max-width: 1024px) {
+		width: 90%;
+	}
 `;
 
 export const Headline = styled.span`

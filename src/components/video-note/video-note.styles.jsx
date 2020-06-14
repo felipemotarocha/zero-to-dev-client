@@ -13,6 +13,10 @@ export const Container = styled.div`
 	position: relative;
 	width: 100%;
 	border-bottom: 1px solid #eee;
+
+	@media (max-width: 1024px) {
+		max-width: 100%;
+	}
 `;
 
 export const Time = styled.div`

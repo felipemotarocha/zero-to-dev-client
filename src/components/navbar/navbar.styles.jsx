@@ -15,7 +15,7 @@ export const Logo = styled.div`
 `;
 
 export const UserName = styled(Typography)`
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
 		display: none;
 	}
 `;
@@ -24,7 +24,7 @@ export const MenuButton = styled(IconButton)`
 	display: none;
 	margin-right: "5px";
 
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
 		display: flex;
 	}
 `;
@@ -32,7 +32,7 @@ export const MenuButton = styled(IconButton)`
 export const UserAvatar = styled(Avatar)`
 	margin-right: 10px;
 
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
 		margin-right: 0;
 	}
 `;
