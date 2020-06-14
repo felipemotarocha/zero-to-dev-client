@@ -7,21 +7,18 @@ export const Container = styled.div`
 	justify-content: center;
 	flex-direction: column;
 	flex-flow: wrap;
+	padding: 10px 0;
+	margin-top: 64px;
 `;
 
 export const Headline = styled.span`
 	display: inline-block;
-	/* font-weight: 400;
-	font-size: 2rem;
-	margin: 0;
-	padding-top: 50px;
-	text-align: center;
-	text-transform: uppercase; */
 `;
 
 export const Videos = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	align-content: flex-start;
-	width: 97%;
+	align-items: flex-start;
+	margin: auto;
+	justify-content: center;
 `;

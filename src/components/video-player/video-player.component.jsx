@@ -5,11 +5,11 @@ import { createStructuredSelector } from "reselect";
 
 import {
 	Container,
+	Content,
 	YoutubePlayer,
 	VideoNotesContainer,
 	AddNoteContainer,
 } from "./video-player.styles";
-import { selectUserVideoNotes } from "../../redux/note/note.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { fetchUserVideoNotesStart } from "../../redux/note/note.actions";
 import { setVideoPlayer } from "../../redux/video/video.actions";
@@ -17,7 +17,7 @@ import { setVideoPlayer } from "../../redux/video/video.actions";
 import VideoNotes from "../video-notes/video-notes.component";
 import AddNote from "../add-note/add-note.component";
 
-const VideoPlayer = ({ userVideoNotes, currentUser }) => {
+const VideoPlayer = ({ currentUser }) => {
 	let { id } = useParams();
 	const dispatch = useDispatch();
 
@@ -37,24 +37,25 @@ const VideoPlayer = ({ userVideoNotes, currentUser }) => {
 
 	return (
 		<Container>
-			<YoutubePlayer
-				videoId={id}
-				opts={playerOptions}
-				onReady={({ target }) => dispatch(setVideoPlayer(target))}
-			/>
-			<VideoNotesContainer>
-				<VideoNotes />
-			</VideoNotesContainer>
+			<Content>
+				<YoutubePlayer
+					videoId={id}
+					opts={playerOptions}
+					onReady={({ target }) => dispatch(setVideoPlayer(target))}
+				/>
+				<VideoNotesContainer>
+					<VideoNotes />
+				</VideoNotesContainer>
 
-			<AddNoteContainer>
-				<AddNote />
-			</AddNoteContainer>
+				<AddNoteContainer>
+					<AddNote />
+				</AddNoteContainer>
+			</Content>
 		</Container>
 	);
 };
 
 const mapStateToProps = createStructuredSelector({
-	userVideoNotes: selectUserVideoNotes,
 	currentUser: selectCurrentUser,
 });
 

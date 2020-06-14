@@ -17,13 +17,20 @@ import {
 import {
 	selectUserVideoNotes,
 	selectNotesEditable,
+	selectEditBoxHidden,
 } from "../../redux/note/note.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { toggleNotesEditable } from "../../redux/note/note.actions";
 
 import VideoNote from "../video-note/video-note.component";
+import EditNote from "../edit-note/edit-note.component";
 
-const VideoNotes = ({ userVideoNotes, currentUser, notesEditable }) => {
+const VideoNotes = ({
+	userVideoNotes,
+	currentUser,
+	notesEditable,
+	editBoxHidden,
+}) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	return (
@@ -38,6 +45,7 @@ const VideoNotes = ({ userVideoNotes, currentUser, notesEditable }) => {
 					)}
 				</Edit>
 			</Headline>
+			{editBoxHidden ? "" : <EditNote />}
 			{currentUser ? (
 				<Notes>
 					{userVideoNotes
@@ -69,6 +77,7 @@ const mapStateToProps = createStructuredSelector({
 	userVideoNotes: selectUserVideoNotes,
 	currentUser: selectCurrentUser,
 	notesEditable: selectNotesEditable,
+	editBoxHidden: selectEditBoxHidden,
 });
 
 export default connect(mapStateToProps)(VideoNotes);

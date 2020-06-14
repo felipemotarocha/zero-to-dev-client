@@ -16,3 +16,7 @@ export const selectEditBoxHidden = createSelector(
 	[selectNote],
 	(note) => note.editBoxHidden
 );
+
+export const selectNoteBeingEdited = createSelector([selectNote], (note) =>
+	note ? note.noteBeingEdited : null
+);

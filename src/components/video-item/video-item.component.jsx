@@ -20,12 +20,15 @@ const useStyles = makeStyles({
 		height: "160px",
 	},
 	content: {
-		height: "60px",
+		height: "80px",
 		display: "flex",
 		alignItems: "center",
 	},
 	button: {
 		color: "#1C6CF3",
+	},
+	buttons: {
+		marginTop: "-7px",
 	},
 });
 
@@ -47,7 +50,7 @@ const VideoItem = ({ video: { title, videoId } }) => {
 					/>
 					<CardContent className={classes.content}>
 						<Typography
-							style={{ margin: "0" }}
+							style={{ margin: "0", fontWeight: "500" }}
 							gutterBottom
 							variant="h6"
 							component="h2"
@@ -56,7 +59,7 @@ const VideoItem = ({ video: { title, videoId } }) => {
 						</Typography>
 					</CardContent>
 				</CardActionArea>
-				<CardActions>
+				<CardActions className={classes.buttons}>
 					<Button
 						size="small"
 						color="primary"

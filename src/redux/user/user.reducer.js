@@ -2,7 +2,6 @@ import UserActionTypes from "./user.types";
 
 const INITIAL_STATE = {
 	currentUser: null,
-	error: null,
 	isLoading: true,
 };
 
@@ -41,7 +40,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				currentUser: null,
-				error: action.payload,
 				isLoading: false,
 			};
 		default:

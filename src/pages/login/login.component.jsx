@@ -11,15 +11,14 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import Icon from "@material-ui/core/Icon";
-
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import GoogleLogin from "react-google-login";
 import { ReactSVG } from "react-svg";
 
+import { Container, Content } from "./login.styles";
 import {
 	emailSignInStart,
 	googleSignInStart,
@@ -115,12 +114,12 @@ const SignIn = ({ isLoading, currentUser }) => {
 	};
 
 	return (
-		<>
-			{isLoading ? (
-				""
-			) : (
-				<ThemeProvider theme={theme}>
-					<Container component="main" maxWidth="xs">
+		<Container>
+			<Content>
+				{isLoading ? (
+					""
+				) : (
+					<ThemeProvider theme={theme}>
 						<CssBaseline />
 						<div className={classes.paper}>
 							<Avatar className={classes.avatar}>
@@ -212,10 +211,10 @@ const SignIn = ({ isLoading, currentUser }) => {
 								</Grid>
 							</form>
 						</div>
-					</Container>
-				</ThemeProvider>
-			)}
-		</>
+					</ThemeProvider>
+				)}
+			</Content>
+		</Container>
 	);
 };
 

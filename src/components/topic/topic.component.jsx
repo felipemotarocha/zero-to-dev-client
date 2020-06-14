@@ -1,7 +1,7 @@
 import React from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
-import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
+import { connect, useDispatch } from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -10,8 +10,10 @@ import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
 import { ReactSVG } from "react-svg";
 import HomeIcon from "@material-ui/icons/Home";
+import { useMediaQuery } from "react-responsive";
 
 import { selectCurrentTopic } from "../../redux/topic/topic.selectors";
+import { setSidebarHidden } from "../../redux/mobile/mobile.actions";
 
 const useStyles = makeStyles(() => ({
 	blue: {
@@ -21,14 +23,18 @@ const useStyles = makeStyles(() => ({
 
 const Topic = ({ topic: { _id, icon, title, description }, currentTopic }) => {
 	const history = useHistory();
-	const match = useRouteMatch();
+	const dispatch = useDispatch();
+	const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+
 	const handleClick = () => {
 		if (_id) {
 			// Topic is being received.
-			return history.push(`${match.url}/topic/${_id}`);
+			history.push(`/home/topic/${_id}`);
+			return isMobile ? dispatch(setSidebarHidden(true)) : null;
 		}
 		// None topic is being received, so the user clicked in the "Home" button.
-		return history.push("/home");
+		history.push("/home");
+		return isMobile ? dispatch(setSidebarHidden(true)) : null;
 	};
 
 	const classes = useStyles();

@@ -7,14 +7,15 @@ const INITIAL_STATE = {
 	isLoading: true,
 	editable: false,
 	editBoxHidden: true,
+	noteBeingEdited: null,
 };
 
 const noteReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case NoteActionTypes.FETCH_USER_VIDEO_NOTES_START:
 		case NoteActionTypes.ADD_VIDEO_NOTE_START:
-		case NoteActionTypes.DELETE_NOTE_START:
 		case NoteActionTypes.UPDATE_NOTE_START:
+		case NoteActionTypes.DELETE_NOTE_START:
 			return {
 				...state,
 				isLoading: true,
@@ -56,6 +57,7 @@ const noteReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				editBoxHidden: !state.editBoxHidden,
+				noteBeingEdited: action.payload,
 			};
 		case NoteActionTypes.FETCH_USER_VIDEO_NOTES_FAILURE:
 		case NoteActionTypes.DELETE_NOTE_FAILURE:

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { createStructuredSelector } from "reselect";
+import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +13,7 @@ import {
 	toggleEditBoxHidden,
 	updateNoteStart,
 } from "../../redux/note/note.actions";
+import { selectNoteBeingEdited } from "../../redux/note/note.selectors";
 
 const theme = createMuiTheme({
 	palette: {
@@ -20,9 +23,10 @@ const theme = createMuiTheme({
 	},
 });
 
-const EditNote = ({ noteId }) => {
+const EditNote = ({ noteBeingEdited: { noteId } }) => {
 	const [text, setText] = useState("");
 	const dispatch = useDispatch();
+
 	return (
 		<ThemeProvider theme={theme}>
 			<Container>
@@ -69,4 +73,8 @@ const EditNote = ({ noteId }) => {
 	);
 };
 
-export default EditNote;
+const mapStateToProps = createStructuredSelector({
+	noteBeingEdited: selectNoteBeingEdited,
+});
+
+export default connect(mapStateToProps)(EditNote);

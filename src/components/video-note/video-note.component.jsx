@@ -21,7 +21,6 @@ import {
 	toggleEditBoxHidden,
 } from "../../redux/note/note.actions";
 import customAlert from "../custom-alert/custom-alert.component";
-import EditNote from "../edit-note/edit-note.component";
 
 const VideoNote = ({
 	note: { _id, text, videoTime },
@@ -49,7 +48,6 @@ const VideoNote = ({
 
 	return (
 		<Container>
-			{editBoxHidden ? "" : <EditNote noteId={_id} />}
 			{videoPlayer ? (
 				<>
 					{" "}
@@ -62,7 +60,7 @@ const VideoNote = ({
 							<Delete fontSize="small" onClick={confirmDelete} />
 							<Edit
 								fontSize="small"
-								onClick={() => dispatch(toggleEditBoxHidden())}
+								onClick={() => dispatch(toggleEditBoxHidden({ noteId: _id }))}
 							/>
 						</Buttons>
 					) : (

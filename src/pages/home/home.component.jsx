@@ -4,7 +4,6 @@ import { useRouteMatch } from "react-router-dom";
 
 import { Container } from "./home.styles";
 
-import SideBar from "../../components/sidebar/sidebar.component";
 import HomeTopic from "../../components/home-topic/home-topic.component";
 import TopicView from "../../components/topic-view/topic-view.component";
 import VideoPlayer from "../../components/video-player/video-player.component";
@@ -14,7 +13,6 @@ const Home = () => {
 
 	return (
 		<Container>
-			<SideBar />
 			<Switch>
 				<Route exact path="/home" component={HomeTopic} />
 				<Route path={`${match.url}/topic/:id`} component={TopicView} />

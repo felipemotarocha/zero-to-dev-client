@@ -13,9 +13,12 @@ import Login from "./pages/login/login.component";
 import SignUp from "./pages/sign-up/sign-up.component";
 import Authenticated from "./components/authenticated/authenticated.component";
 import UserProfile from "./components/user-profile/user-profile.component";
+import SideBar from "./components/sidebar/sidebar.component";
 
 import { fetchTopicsStart } from "./redux/topic/topic.actions";
 import { checkUserSessionStart } from "./redux/user/user.actions";
+
+import Alert from "./components/alert/alert.component";
 
 function App() {
 	const dispatch = useDispatch();
@@ -26,18 +29,21 @@ function App() {
 	}, [dispatch]);
 	return (
 		<Router>
-			<div className="app" style={{ height: "100vh" }}>
-				<Navbar />
-				<Switch>
-					<Redirect exact from="/" to="/home" />
-					<Route path="/home" component={Home} />
-					<Route exact path="/login" component={Login} />
-					<Route exact path="/sign-up" component={SignUp} />
-					<Authenticated>
-						<Route exact path="/my-profile" component={UserProfile} />
-					</Authenticated>
-				</Switch>
-			</div>
+			<Alert>
+				<div className="app">
+					<Navbar />
+					<SideBar />
+					<Switch>
+						<Redirect exact from="/" to="/home" />
+						<Route path="/home" component={Home} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/sign-up" component={SignUp} />
+						<Authenticated>
+							<Route exact path="/my-profile" component={UserProfile} />
+						</Authenticated>
+					</Switch>
+				</div>
+			</Alert>
 		</Router>
 	);
 }

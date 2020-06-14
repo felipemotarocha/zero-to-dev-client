@@ -65,5 +65,6 @@ export const BlueText = styled.span`
 	&:hover {
 		cursor: pointer;
 		color: #0441a8;
+		text-decoration: underline;
 	}
 `;

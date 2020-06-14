@@ -1,18 +1,14 @@
 import styled from "styled-components";
+import List from "@material-ui/core/List";
 
-export const Headline = styled.span`
-	display: inline-block;
-	font-size: 1.5rem;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	font-weight: 600;
+export const Container = styled(List)`
 	width: 100%;
-	text-transform: uppercase;
-	color: #ff9f1c;
-	border-bottom: 1px solid #ff9f1c;
-`;
-
-export const Topics = styled.div`
-	width: 100%;
-	height: 100%;
+	max-width: 270px;
+	min-height: 100vh;
+	background-color: #ffffff;
+	box-shadow: 5px 9px 31px -25px rgba(0, 0, 0, 0.75);
+	position: fixed;
+	left: 0;
+	z-index: 4;
+	margin-top: 60px;
 `;

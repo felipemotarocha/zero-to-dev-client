@@ -23,6 +23,7 @@ export const addVideoNoteStart = (data) => ({
 export const addVideoNoteSuccess = (note) => ({
 	type: NoteActionTypes.ADD_VIDEO_NOTE_SUCCESS,
 	payload: note,
+	successMessage: "A nota foi criada com sucesso!",
 });
 
 export const addVideoNoteFailure = (error) => ({
@@ -42,6 +43,7 @@ export const deleteNoteStart = (noteId) => ({
 export const deleteNoteSuccess = (note) => ({
 	type: NoteActionTypes.DELETE_NOTE_SUCCESS,
 	payload: note,
+	successMessage: "A nota foi removida com sucesso!",
 });
 
 export const deleteNoteFailure = (error) => ({
@@ -57,6 +59,7 @@ export const updateNoteStart = (data) => ({
 export const updateNoteSuccess = (note) => ({
 	type: NoteActionTypes.UPDATE_NOTE_SUCCESS,
 	payload: note,
+	successMessage: "A nota foi atualizada com sucesso!",
 });
 
 export const updateNoteFailure = (error) => ({
@@ -64,6 +67,7 @@ export const updateNoteFailure = (error) => ({
 	error,
 });
 
-export const toggleEditBoxHidden = () => ({
+export const toggleEditBoxHidden = (noteId) => ({
 	type: NoteActionTypes.TOGGLE_EDIT_BOX_HIDDEN,
+	payload: noteId,
 });

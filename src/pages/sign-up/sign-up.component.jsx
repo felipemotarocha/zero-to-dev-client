@@ -12,8 +12,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { useMediaQuery } from "react-responsive";
+import Sidebar from "../../components/sidebar/sidebar.component";
 
+import { Container, Content } from "./sign-up.styles";
 import { signUpStart } from "../../redux/user/user.actions";
 import {
 	selectCurrentUser,
@@ -44,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: theme.spacing(1),
 	},
 	submit: {
-		margin: theme.spacing(3, 0, 2),
+		margin: "7px 0",
 	},
 	root: {
 		"&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
@@ -79,6 +81,7 @@ const SignUp = ({ currentUser, isLoading }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
 	useEffect(() => {
 		if (currentUser) {
@@ -94,98 +97,102 @@ const SignUp = ({ currentUser, isLoading }) => {
 
 	return (
 		<>
-			{isLoading ? (
-				""
-			) : (
-				<ThemeProvider theme={theme}>
-					<Container component="main" maxWidth="xs">
-						<CssBaseline />
-						<div className={classes.paper}>
-							<Avatar className={classes.avatar}>
-								<LockOutlinedIcon />
-							</Avatar>
-							<Typography component="h1" variant="h5">
-								Criar uma conta
-							</Typography>
-							<form className={classes.form} noValidate>
-								<TextField
-									value={name}
-									onChange={({ target: { value } }) => setName(value)}
-									className={classes.root}
-									variant="outlined"
-									margin="normal"
-									required
-									fullWidth
-									id="name"
-									label="Nome completo"
-									name="name"
-									autoComplete="name"
-									autoFocus
-									InputLabelProps={{
-										className: classes.root,
-									}}
-								/>
-								<TextField
-									value={email}
-									onChange={({ target: { value } }) => setEmail(value)}
-									className={classes.root}
-									variant="outlined"
-									margin="normal"
-									required
-									fullWidth
-									id="email"
-									label="Email"
-									name="email"
-									autoComplete="email"
-									InputLabelProps={{
-										className: classes.root,
-									}}
-								/>
-								<TextField
-									value={password}
-									onChange={({ target: { value } }) => setPassword(value)}
-									className={classes.root}
-									variant="outlined"
-									margin="normal"
-									required
-									fullWidth
-									name="password"
-									label="Senha"
-									type="password"
-									id="password"
-									autoComplete="current-password"
-									InputLabelProps={{
-										className: classes.root,
-									}}
-									helperText="Deve ter pelo menos 7 caracteres."
-								/>
-								<Button
-									onClick={handleSubmit}
-									type="submit"
-									fullWidth
-									variant="contained"
-									color="primary"
-									className={classes.submit}
-								>
-									CRIAR CONTA
-								</Button>
-								<Grid container>
-									<Grid item>
-										<Link
-											className={classes.link}
-											component="span"
-											variant="body2"
-											onClick={() => history.push("/login")}
-										>
-											Já tem uma conta? Fazer login
-										</Link>
+			{isMobile ? <Sidebar /> : ""}
+
+			<Container>
+				<Content>
+					{isLoading ? (
+						""
+					) : (
+						<ThemeProvider theme={theme}>
+							<CssBaseline />
+							<div className={classes.paper}>
+								<Avatar className={classes.avatar}>
+									<LockOutlinedIcon />
+								</Avatar>
+								<Typography component="h1" variant="h5">
+									Criar uma conta
+								</Typography>
+								<form className={classes.form} noValidate>
+									<TextField
+										value={name}
+										onChange={({ target: { value } }) => setName(value)}
+										className={classes.root}
+										variant="outlined"
+										margin="normal"
+										required
+										fullWidth
+										id="name"
+										label="Nome completo"
+										name="name"
+										autoComplete="name"
+										autoFocus
+										InputLabelProps={{
+											className: classes.root,
+										}}
+									/>
+									<TextField
+										value={email}
+										onChange={({ target: { value } }) => setEmail(value)}
+										className={classes.root}
+										variant="outlined"
+										margin="normal"
+										required
+										fullWidth
+										id="email"
+										label="Email"
+										name="email"
+										autoComplete="email"
+										InputLabelProps={{
+											className: classes.root,
+										}}
+									/>
+									<TextField
+										value={password}
+										onChange={({ target: { value } }) => setPassword(value)}
+										className={classes.root}
+										variant="outlined"
+										margin="normal"
+										required
+										fullWidth
+										name="password"
+										label="Senha"
+										type="password"
+										id="password"
+										autoComplete="current-password"
+										InputLabelProps={{
+											className: classes.root,
+										}}
+										helperText="Sua senha deve ter pelo menos 7 caracteres."
+									/>
+									<Button
+										onClick={handleSubmit}
+										type="submit"
+										fullWidth
+										variant="contained"
+										color="primary"
+										className={classes.submit}
+									>
+										CRIAR CONTA
+									</Button>
+									<Grid container>
+										<Grid item>
+											<Link
+												className={classes.link}
+												component="span"
+												variant="body2"
+												onClick={() => history.push("/login")}
+											>
+												Já tem uma conta? Fazer login
+											</Link>
+										</Grid>
 									</Grid>
-								</Grid>
-							</form>
-						</div>
-					</Container>
-				</ThemeProvider>
-			)}
+								</form>
+							</div>
+						</ThemeProvider>
+					)}
+				</Content>
+			</Container>
 		</>
 	);
 };

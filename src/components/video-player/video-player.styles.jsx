@@ -2,9 +2,17 @@ import styled from "styled-components";
 import YouTube from "react-youtube";
 
 export const Container = styled.div`
+	height: 100vh;
+	width: 100vw;
 	display: flex;
-	height: 500px;
+	align-items: center;
 	justify-content: center;
+`;
+
+export const Content = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin: auto;
 	flex-flow: wrap;
 	width: 1215px;

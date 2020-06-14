@@ -13,6 +13,7 @@ export const googleSignInStart = (credentials) => ({
 export const signInSuccess = (user) => ({
 	type: UserActionTypes.SIGN_IN_SUCCESS,
 	payload: user,
+	successMessage: "Login bem sucedido.",
 });
 
 export const signInFailure = (error) => ({
@@ -32,7 +33,7 @@ export const signUpSuccess = (user) => ({
 
 export const signUpFailure = (error) => ({
 	type: UserActionTypes.SIGN_UP_FAILURE,
-	payload: error,
+	error,
 });
 
 export const signOutStart = () => ({
@@ -41,6 +42,7 @@ export const signOutStart = () => ({
 
 export const signOutSuccess = () => ({
 	type: UserActionTypes.SIGN_OUT_SUCCESS,
+	successMessage: "Você saiu.",
 });
 
 export const signOutFailure = (error) => ({

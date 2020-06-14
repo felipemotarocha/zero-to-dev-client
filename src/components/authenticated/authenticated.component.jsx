@@ -17,10 +17,6 @@ const Authenticated = ({ children, userError, isLoading }) => {
 	const authToken = localStorage.getItem("authToken");
 
 	useEffect(() => {
-		console.log("authenticated");
-	}, []);
-
-	useEffect(() => {
 		if (!authToken || userError) {
 			history.push("/login");
 		}

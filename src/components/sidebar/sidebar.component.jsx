@@ -1,43 +1,49 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-
+import React, { useEffect } from "react";
 import { createStructuredSelector } from "reselect";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import Slide from "@material-ui/core/Slide";
+import { useMediaQuery } from "react-responsive";
+
+import { Container } from "./sidebar.styles";
 import { selectTopics } from "../../redux/topic/topic.selectors";
+import { selectSidebarHidden } from "../../redux/mobile/mobile.selectors";
+import { setSidebarHidden } from "../../redux/mobile/mobile.actions";
 
 import Topic from "../topic/topic.component";
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		width: "100%",
-		maxWidth: 280,
-		backgroundColor: theme.palette.background.paper,
-		boxShadow: "5px 9px 31px -25px rgba(0,0,0,0.75)",
-	},
-}));
+const SideBar = ({ topics, isSidebarHidden }) => {
+	const dispatch = useDispatch();
+	const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
-const SideBar = ({ topics }) => {
-	const classes = useStyles();
+	useEffect(() => {
+		if (isMobile) {
+			dispatch(setSidebarHidden(true));
+		} else {
+			dispatch(setSidebarHidden(false));
+		}
+	}, [isMobile, dispatch]);
 
 	return (
-		<List className={classes.root}>
-			<Topic
-				key={"home"}
-				topic={{
-					title: "Início",
-					description: "",
-				}}
-			/>
-			{topics
-				? topics.map(({ topic }) => <Topic key={topic._id} topic={topic} />)
-				: ""}
-		</List>
+		<Slide direction="right" in={!isSidebarHidden} mountOnEnter>
+			<Container>
+				<Topic
+					key={"home"}
+					topic={{
+						title: "Início",
+						description: "",
+					}}
+				/>
+				{topics
+					? topics.map(({ topic }) => <Topic key={topic._id} topic={topic} />)
+					: ""}
+			</Container>
+		</Slide>
 	);
 };
 
 const mapStateToProps = createStructuredSelector({
 	topics: selectTopics,
+	isSidebarHidden: selectSidebarHidden,
 });
 
 export default connect(mapStateToProps)(SideBar);

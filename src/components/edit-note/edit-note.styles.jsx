@@ -11,7 +11,6 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 	animation: fadeIn 350ms ease forwards;
 
 	@keyframes fadeIn {
@@ -19,7 +18,7 @@ export const Container = styled.div`
 			background-color: rgba(0, 0, 0, 0.1);
 		}
 		to {
-			background-color: rgba(0, 0, 0, 0.35);
+			background-color: rgba(0, 0, 0, 0.5);
 		}
 	}
 `;
@@ -33,7 +32,7 @@ export const Box = styled.div`
 	opacity: 1;
 	padding: 30px;
 	border-radius: 10px;
-
+	box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
 	animation: fadeUp 350ms ease;
 
 	@keyframes fadeUp {
