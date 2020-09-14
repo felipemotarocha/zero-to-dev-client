@@ -1,8 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
-	width: 100%;
 	height: 100%;
 	justify-content: center;
 	flex-direction: column;
@@ -18,7 +17,4 @@ export const Headline = styled.span`
 export const Videos = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-start;
-	margin: auto;
-	justify-content: center;
 `;
