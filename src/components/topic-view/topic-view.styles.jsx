@@ -7,6 +7,7 @@ export const Container = styled.div`
 	flex-direction: column;
 	flex-flow: wrap;
 	padding: 10px 0;
+	width: 100%;
 	margin-top: 64px;
 `;
 
@@ -17,4 +18,8 @@ export const Headline = styled.span`
 export const Videos = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+
+	@media (max-width: 1024px) {
+		justify-content: center;
+	}
 `;
