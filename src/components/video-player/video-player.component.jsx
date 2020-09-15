@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { connect, useDispatch } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import {
 	Container,
@@ -9,13 +9,13 @@ import {
 	YoutubePlayer,
 	VideoNotesContainer,
 	AddNoteContainer,
-} from "./video-player.styles";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
-import { fetchUserVideoNotesStart } from "../../redux/note/note.actions";
-import { setVideoPlayer } from "../../redux/video/video.actions";
+} from './video-player.styles';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { fetchUserVideoNotesStart } from '../../redux/note/note.actions';
+import { setVideoPlayer } from '../../redux/video/video.actions';
 
-import VideoNotes from "../video-notes/video-notes.component";
-import AddNote from "../add-note/add-note.component";
+import VideoNotes from '../video-notes/video-notes.component';
+import AddNote from '../add-note/add-note.component';
 
 const VideoPlayer = ({ currentUser }) => {
 	let { id } = useParams();
@@ -41,10 +41,10 @@ const VideoPlayer = ({ currentUser }) => {
 					opts={playerOptions}
 					onReady={({ target }) => dispatch(setVideoPlayer(target))}
 				/>
+
 				<VideoNotesContainer>
 					<VideoNotes />
 				</VideoNotesContainer>
-
 				<AddNoteContainer>
 					<AddNote />
 				</AddNoteContainer>

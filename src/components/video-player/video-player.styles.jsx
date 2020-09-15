@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import YouTube from "react-youtube";
+import styled from 'styled-components';
+import YouTube from 'react-youtube';
 
 export const Container = styled.div`
 	height: 100vh;
@@ -30,14 +30,20 @@ export const YoutubePlayer = styled(YouTube)`
 	width: 800px;
 	box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.23);
 
-	@media (max-width: 768px) {
+	@media (max-width: 767px) {
+		width: 350px;
+		height: 300px;
+		margin-bottom: 10px;
+	}
+
+	@media (min-width: 768px) and (max-width: 768px) {
 		width: 700px;
-		height: 400px;
+		height: 500px;
 		margin-bottom: 10px;
 	}
 
 	@media (min-width: 769px) and (max-width: 1024px) {
-		width: 800px;
+		width: 920px;
 		height: 500px;
 		margin-bottom: 10px;
 	}
@@ -48,17 +54,18 @@ export const VideoNotesContainer = styled.div`
 	margin-left: 15px;
 	height: 500px;
 
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
 		margin-left: 0;
 		width: 90%;
-	}
-
-	@media (min-width: 769px) and (max-width: 1024px) {
-		width: 800px;
-		margin-left: 0;
 	}
 `;
 
 export const AddNoteContainer = styled.div`
 	width: 100%;
+	display: flex;
+	justify-content: center;
+
+	@media (max-width: 1024px) {
+		width: 90%;
+	}
 `;
