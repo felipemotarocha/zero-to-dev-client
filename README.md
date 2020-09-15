@@ -6,17 +6,29 @@ I built this application to help people who want to learn web development. It gi
 
 ![Home Page](https://imgur.com/7i4u3Xw.png)
 
+---
+
 ![HTML & CSS](https://imgur.com/crkvbDy.png)
+
+---
 
 ![JavaScript](https://imgur.com/TRM1XK9.png)
 
+---
+
 ![React](https://imgur.com/bkhTHp0.png)
+
+---
 
 ![Video Page](https://imgur.com/iUHt61B.png)
 _Notes are saved in the logged user account._
 
+---
+
 ![Login Page](https://imgur.com/2sw14Ph.png)
 _Keep reading to know how to set up the Google OAuth._
+
+---
 
 ![Register Page](https://imgur.com/F5GODCU.png)
 
