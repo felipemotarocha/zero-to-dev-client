@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import { Container, Videos } from "./topic-view.styles";
-import { selectTopics } from "../../redux/topic/topic.selectors";
-import { selectTopicVideos } from "../../redux/topic/topic.utils";
+import { Container, Videos } from './topic-view.styles';
+import {
+	selectCurrentTopicId,
+	selectTopics,
+} from '../../redux/topic/topic.selectors';
+import { selectTopicVideos } from '../../redux/topic/topic.utils';
 
-import VideoItem from "../video-item/video-item.component";
+import VideoItem from '../video-item/video-item.component';
 
 const TopicView = ({
 	dispatch,
@@ -27,8 +30,10 @@ const TopicView = ({
 		<Container>
 			<Videos>
 				{videos
-					? videos.map((video) => <VideoItem key={video._id} video={video} />)
-					: ""}
+					? videos.map((video) => (
+							<VideoItem key={video._id} video={video} />
+					  ))
+					: ''}
 			</Videos>
 		</Container>
 	);
