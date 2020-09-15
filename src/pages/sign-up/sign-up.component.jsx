@@ -90,7 +90,7 @@ const SignUp = ({ currentUser, isLoading }) => {
 		}
 
 		dispatch(setCurrentTopicId(null));
-	}, [currentUser, history]);
+	}, [currentUser, history, dispatch]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

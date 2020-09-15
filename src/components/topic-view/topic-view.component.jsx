@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { Container, Videos } from './topic-view.styles';
-import {
-	selectCurrentTopicId,
-	selectTopics,
-} from '../../redux/topic/topic.selectors';
+import { selectTopics } from '../../redux/topic/topic.selectors';
 import { selectTopicVideos } from '../../redux/topic/topic.utils';
 
 import VideoItem from '../video-item/video-item.component';
