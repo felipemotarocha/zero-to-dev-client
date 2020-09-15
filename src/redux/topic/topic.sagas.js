@@ -1,14 +1,14 @@
-import { takeLatest, all, call, put } from "redux-saga/effects";
-import axios from "axios";
+import { takeLatest, all, call, put } from 'redux-saga/effects';
+import axios from 'axios';
 
-import TopicActionTypes from "./topic.types";
-import { fetchTopicsSuccess, fetchTopicsFailure } from "./topic.actions";
+import TopicActionTypes from './topic.types';
+import { fetchTopicsSuccess, fetchTopicsFailure } from './topic.actions';
 
 // Fetch data functions
 export function* fetchTopics() {
 	try {
 		const { data } = yield axios.get(
-			"/topics/all/with-videos?sort=alphabetically"
+			'/topics/all/with-videos?sort=alphabetically'
 		);
 		yield put(fetchTopicsSuccess(data));
 	} catch ({ response: { data } }) {

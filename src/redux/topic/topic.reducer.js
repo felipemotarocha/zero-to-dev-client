@@ -1,7 +1,8 @@
-import TopicActionTypes from "./topic.types";
+import TopicActionTypes from './topic.types';
 
 const INITIAL_STATE = {
 	topics: null,
+	currentTopicId: null,
 	isLoading: false,
 };
 
@@ -23,6 +24,12 @@ const topicReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				isLoading: false,
 			};
+		case TopicActionTypes.SET_CURRENT_TOPIC_ID:
+			return {
+				...state,
+				currentTopicId: action.payload,
+			};
+
 		default:
 			return state;
 	}

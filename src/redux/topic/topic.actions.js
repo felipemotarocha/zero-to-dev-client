@@ -1,4 +1,4 @@
-import TopicActionTypes from "./topic.types";
+import TopicActionTypes from './topic.types';
 
 export const fetchTopicsStart = () => ({
 	type: TopicActionTypes.FETCH_TOPICS_START,
@@ -27,6 +27,11 @@ export const fetchTopicVideosSuccess = (videos) => ({
 export const fetchTopicVideosFailure = (error) => ({
 	type: TopicActionTypes.FETCH_TOPIC_VIDEOS_FAILURE,
 	payload: error,
+});
+
+export const setCurrentTopicId = (id) => ({
+	type: TopicActionTypes.SET_CURRENT_TOPIC_ID,
+	payload: id,
 });
 
 export const resetTopicAndVideos = () => ({

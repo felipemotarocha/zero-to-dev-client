@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
 
 const selectTopic = (state) => state.topic;
 
@@ -15,7 +15,6 @@ export const selectTopicIcon = createSelector([selectTopic], (topic) =>
 	topic.topics ? topic.topics.topic.icon : null
 );
 
-export const selectCurrentTopic = createSelector(
-	[selectTopic],
-	({ topicVideos }) => (topicVideos ? topicVideos.topic : null)
+export const selectCurrentTopicId = createSelector([selectTopic], (topic) =>
+	topic.currentTopicId ? topic.currentTopicId : null
 );

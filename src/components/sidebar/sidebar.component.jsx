@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { createStructuredSelector } from "reselect";
-import { connect, useDispatch } from "react-redux";
-import Slide from "@material-ui/core/Slide";
-import { useMediaQuery } from "react-responsive";
+import React, { useEffect } from 'react';
+import { createStructuredSelector } from 'reselect';
+import { connect, useDispatch } from 'react-redux';
+import Slide from '@material-ui/core/Slide';
+import { useMediaQuery } from 'react-responsive';
 
-import { Container } from "./sidebar.styles";
-import { selectTopics } from "../../redux/topic/topic.selectors";
-import { selectSidebarHidden } from "../../redux/mobile/mobile.selectors";
-import { setSidebarHidden } from "../../redux/mobile/mobile.actions";
+import { Container } from './sidebar.styles';
+import { selectTopics } from '../../redux/topic/topic.selectors';
+import { selectSidebarHidden } from '../../redux/mobile/mobile.selectors';
+import { setSidebarHidden } from '../../redux/mobile/mobile.actions';
 
-import Topic from "../topic/topic.component";
+import Topic from '../topic/topic.component';
 
 const SideBar = ({ topics, isSidebarHidden }) => {
 	const dispatch = useDispatch();
-	const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+	const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
 
 	useEffect(() => {
 		if (isMobile) {
@@ -24,18 +24,20 @@ const SideBar = ({ topics, isSidebarHidden }) => {
 	}, [isMobile, dispatch]);
 
 	return (
-		<Slide direction="right" in={!isSidebarHidden} mountOnEnter>
+		<Slide direction='right' in={!isSidebarHidden} mountOnEnter>
 			<Container>
 				<Topic
-					key={"home"}
+					key={'home'}
 					topic={{
-						title: "Início",
-						description: "",
+						title: 'Início',
+						description: '',
 					}}
 				/>
 				{topics
-					? topics.map(({ topic }) => <Topic key={topic._id} topic={topic} />)
-					: ""}
+					? topics.map(({ topic }) => (
+							<Topic key={topic._id} topic={topic} />
+					  ))
+					: ''}
 			</Container>
 		</Slide>
 	);

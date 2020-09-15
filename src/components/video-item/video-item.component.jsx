@@ -3,9 +3,12 @@ import { useHistory } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 
 import { Container } from './video-item.styles';
 
@@ -26,7 +29,9 @@ const useStyles = makeStyles({
 		color: '#1C6CF3',
 	},
 	buttons: {
-		marginTop: '-10px',
+		marginTop: '-5px',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });
 
@@ -57,6 +62,17 @@ const VideoItem = ({ video: { title, videoId } }) => {
 						</Typography>
 					</CardContent>
 				</CardActionArea>
+				<CardActions className={classes.buttons}>
+					<Button
+						size='small'
+						color='primary'
+						className={classes.button}
+						onClick={handleClick}
+						startIcon={<PlayCircleOutlineIcon />}
+					>
+						Assistir
+					</Button>
+				</CardActions>
 			</Card>
 		</Container>
 	);
