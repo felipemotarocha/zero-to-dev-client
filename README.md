@@ -8,7 +8,7 @@ I built this application to help people who want to learn web development. It gi
 
 ---
 
-![HTML & CSS](https://imgur.com/crkvbDy.png)
+![HTML & CSS](https://imgur.com/ltzwFPP.png)
 
 ---
 
