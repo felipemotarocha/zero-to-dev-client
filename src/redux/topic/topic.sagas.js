@@ -8,7 +8,7 @@ import { fetchTopicsSuccess, fetchTopicsFailure } from './topic.actions';
 export function* fetchTopics() {
 	try {
 		const { data } = yield axios.get(
-			'/topics/all/with-videos?sort=alphabetically'
+			`${process.env.REACT_APP_API_URL}/api/topics/all/with-videos?sort=alphabetically`
 		);
 		yield put(fetchTopicsSuccess(data));
 	} catch ({ response: { data } }) {

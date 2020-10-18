@@ -1,7 +1,7 @@
-import { takeLatest, put, call, all } from "redux-saga/effects";
-import axios from "axios";
+import { takeLatest, put, call, all } from 'redux-saga/effects';
+import axios from 'axios';
 
-import UserActionTypes from "./user.types";
+import UserActionTypes from './user.types';
 import {
 	signInSuccess,
 	signInFailure,
@@ -11,15 +11,21 @@ import {
 	signOutFailure,
 	checkUserSessionSuccess,
 	checkUserSessionFailure,
-} from "./user.actions";
+} from './user.actions';
 
 // Asynchronous code
 export function* signInWithEmail({ payload: { email, password } }) {
 	try {
 		const {
 			data: { user, token },
-		} = yield axios.post("/users/login", { email, password });
-		localStorage.setItem("authToken", token);
+		} = yield axios.post(
+			`${process.env.REACT_APP_API_URL}/api/users/login`,
+			{
+				email,
+				password,
+			}
+		);
+		localStorage.setItem('authToken', token);
 		yield put(signInSuccess(user));
 	} catch ({ response: { data } }) {
 		yield put(signInFailure(data));
@@ -30,8 +36,12 @@ export function* signUp({ payload: { name, email, password } }) {
 	try {
 		const {
 			data: { user, token },
-		} = yield axios.post("/users", { name, email, password });
-		localStorage.setItem("authToken", token);
+		} = yield axios.post(`${process.env.REACT_APP_API_URL}/api/users`, {
+			name,
+			email,
+			password,
+		});
+		localStorage.setItem('authToken', token);
 		yield put(signUpSuccess(user));
 	} catch ({ response: { data } }) {
 		yield put(signUpFailure(data));
@@ -44,13 +54,16 @@ export function* signInWithGoogle({
 	try {
 		const {
 			data: { user, token },
-		} = yield axios.post("/users/oauth/google", {
-			email,
-			name,
-			googleId,
-			profileImage: imageUrl,
-		});
-		yield localStorage.setItem("authToken", token);
+		} = yield axios.post(
+			`${process.env.REACT_APP_API_URL}/api/users/oauth/google`,
+			{
+				email,
+				name,
+				googleId,
+				profileImage: imageUrl,
+			}
+		);
+		yield localStorage.setItem('authToken', token);
 		yield put(signInSuccess(user));
 	} catch ({ response: { data } }) {
 		yield put(signInFailure(data));
@@ -59,15 +72,15 @@ export function* signInWithGoogle({
 
 export function* signOut() {
 	try {
-		const authToken = localStorage.getItem("authToken");
+		const authToken = localStorage.getItem('authToken');
 		yield axios.post(
-			"/users/logout",
+			`${process.env.REACT_APP_API_URL}/api/users/logout`,
 			{},
 			{
 				headers: { Authorization: `Bearer ${authToken}` },
 			}
 		);
-		localStorage.removeItem("authToken");
+		localStorage.removeItem('authToken');
 		yield put(signOutSuccess());
 	} catch ({ response: { data } }) {
 		yield put(signOutFailure(data));
@@ -76,13 +89,16 @@ export function* signOut() {
 
 export function* checkUserSession() {
 	try {
-		const authToken = localStorage.getItem("authToken");
-		const { data } = yield axios.get("/users/me", {
-			headers: { Authorization: `Bearer ${authToken}` },
-		});
+		const authToken = localStorage.getItem('authToken');
+		const { data } = yield axios.get(
+			`${process.env.REACT_APP_API_URL}/api/users/me`,
+			{
+				headers: { Authorization: `Bearer ${authToken}` },
+			}
+		);
 		yield put(checkUserSessionSuccess(data));
 	} catch (error) {
-		yield localStorage.removeItem("authToken");
+		yield localStorage.removeItem('authToken');
 		yield put(checkUserSessionFailure(error));
 	}
 }
@@ -105,7 +121,10 @@ export function* onSignOutStart() {
 }
 
 export function* onCheckUserSessionStart() {
-	yield takeLatest(UserActionTypes.CHECK_USER_SESSION_START, checkUserSession);
+	yield takeLatest(
+		UserActionTypes.CHECK_USER_SESSION_START,
+		checkUserSession
+	);
 }
 
 export function* userSagas() {

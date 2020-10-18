@@ -1,7 +1,7 @@
-import { takeLatest, all, call, put } from "redux-saga/effects";
-import axios from "axios";
+import { takeLatest, all, call, put } from 'redux-saga/effects';
+import axios from 'axios';
 
-import NoteActionTypes from "./note.types";
+import NoteActionTypes from './note.types';
 import {
 	fetchUserVideoNotesSuccess,
 	fetchUserVideoNotesFailure,
@@ -11,14 +11,14 @@ import {
 	deleteNoteFailure,
 	updateNoteSuccess,
 	updateNoteFailure,
-} from "./note.actions";
+} from './note.actions';
 
 // Asynchronous operations
 export function* fetchUserVideoNotes({ payload: { videoId } }) {
 	try {
-		const authToken = localStorage.getItem("authToken");
+		const authToken = localStorage.getItem('authToken');
 		const { data } = yield axios.get(
-			`/notes/my-notes?video=${videoId}&sort=true`,
+			`${process.env.REACT_APP_API_URL}/api/notes/my-notes?video=${videoId}&sort=true`,
 			{
 				headers: {
 					Authorization: `Bearer ${authToken}`,
@@ -33,9 +33,9 @@ export function* fetchUserVideoNotes({ payload: { videoId } }) {
 
 export function* addVideoNote({ payload: { text, videoTime, videoId } }) {
 	try {
-		const authToken = localStorage.getItem("authToken");
+		const authToken = localStorage.getItem('authToken');
 		const { data } = yield axios.post(
-			"/notes",
+			`${process.env.REACT_APP_API_URL}/api/notes`,
 			{
 				text,
 				videoTime,
@@ -55,7 +55,9 @@ export function* addVideoNote({ payload: { text, videoTime, videoId } }) {
 
 export function* deleteNote({ payload: { noteId } }) {
 	try {
-		const { data } = yield axios.delete(`/notes/${noteId}`);
+		const { data } = yield axios.delete(
+			`${process.env.REACT_APP_API_URL}/api/notes/${noteId}`
+		);
 		yield put(deleteNoteSuccess(data));
 	} catch ({ response: { data } }) {
 		yield put(deleteNoteFailure(data));
@@ -64,9 +66,12 @@ export function* deleteNote({ payload: { noteId } }) {
 
 export function* updateNote({ payload: { text, noteId } }) {
 	try {
-		const { data } = yield axios.patch(`/notes/${noteId}`, {
-			text,
-		});
+		const { data } = yield axios.patch(
+			`${process.env.REACT_APP_API_URL}/api/notes/${noteId}`,
+			{
+				text,
+			}
+		);
 		yield put(updateNoteSuccess(data));
 	} catch ({ response: { data } }) {
 		yield put(updateNoteFailure(data));
